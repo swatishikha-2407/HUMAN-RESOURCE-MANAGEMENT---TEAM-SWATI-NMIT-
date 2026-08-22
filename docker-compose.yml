@@ -5,6 +5,11 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: leave_management
+    image: mysql:8.0
+    container_name: employee-attendance-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: employee_attendance
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3306:3306"
@@ -15,6 +20,9 @@ services:
       interval: 5s
       timeout: 5s
       retries: 20
+      interval: 10s
+      timeout: 5s
+      retries: 10
 
 volumes:
   mysql_data:
