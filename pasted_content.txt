@@ -1,0 +1,227 @@
+MEMBER 4 — LEAVE + PAYROLL + NOTIFICATIONS + ANALYTICS
+🎯 Main responsibility
+
+Member 4 owns the HR business modules.
+
+Their main areas:
+
+LEAVE
+PAYROLL
+NOTIFICATIONS
+ANALYTICS / REPORTS
+
+The problem statement specifically includes leave/time-off, approval workflows, payroll visibility, notifications and analytics/reports.
+
+22. LEAVE MANAGEMENT
+
+This should be one of the most complete features.
+
+Employee side
+
+Employee chooses:
+
+Leave type
+Start date
+End date
+Remarks
+
+Leave types:
+
+Paid
+Sick
+Unpaid
+
+23. Leave request flow
+EMPLOYEE
+    ↓
+Apply Leave
+    ↓
+Database
+    ↓
+Status = Pending
+    ↓
+ADMIN
+    ↓
+Review
+    ↓
+Approve / Reject
+    ↓
+Database updated
+    ↓
+EMPLOYEE sees new status
+
+Statuses:
+
+Pending
+Approved
+Rejected
+
+24. Admin Leave Approval
+
+Admin should be able to:
+
+See all requests
+See employee
+See leave type
+See dates
+See remarks
+Approve
+Reject
+Add comments
+
+These are directly specified in the requirements.
+
+Member 4 handles the logic.
+
+Member 1 handles the screen/UI.
+
+25. PAYROLL
+
+Member 4 owns the payroll functionality.
+
+Employee
+
+Employee can:
+
+VIEW salary
+
+but cannot edit it.
+
+The document specifically says employee payroll data is read-only.
+
+Admin
+
+Admin can:
+
+View payroll for all employees
+Update salary structure
+Maintain payroll accuracy
+
+26. Payroll database
+
+A practical structure:
+
+payroll
+----------------
+id
+employee_id
+basic_salary
+allowances
+deductions
+net_salary
+updated_at
+
+If your team wants salary slips, you can add:
+
+salary_slips
+----------------
+id
+employee_id
+month
+year
+file_url
+
+But salary slips beyond the general reports requirement are an optional enhancement, not a detailed mandatory schema in the problem statement.
+
+27. NOTIFICATIONS
+
+The requirements mention:
+
+Email & notification alerts.
+
+Member 4 can implement notifications such as:
+
+Leave request submitted
+Leave approved
+Leave rejected
+Attendance marked
+HR notification
+
+A practical table:
+
+notifications
+----------------
+id
+user_id
+message
+type
+is_read
+created_at
+28. ANALYTICS
+
+Member 4 handles the data/logic behind the analytics.
+
+The problem statement mentions an analytics and reports dashboard, including examples such as salary slips and attendance reports.
+
+Possible metrics:
+
+Total employees
+Present today
+Absent today
+Employees on leave
+Pending leave requests
+
+And:
+
+Attendance statistics
+Leave statistics
+Payroll overview
+Important distinction:
+
+Member 4 = data/calculation
+
+Member 1 = visual chart/UI
+
+For example:
+
+Member 4 calculates:
+
+Present = 98
+Absent = 10
+Leave = 12
+
+Member 1 turns it into:
+
+      Attendance
+       📊 Chart
+29. Reports
+
+Member 4 can prepare data for:
+
+Attendance reports
+Leave reports
+Payroll reports
+
+If time permits, you can add export functionality such as CSV/PDF, but don't prioritize this over the core workflow in an 8-hour hackathon.
+
+30. What Member 4 needs from Member 3
+
+Member 4 needs employee information and attendance data.
+
+For example:
+
+Member 3
+   ↓
+Attendance data
+   ↓
+Member 4
+   ↓
+Calculate attendance statistics
+   ↓
+Member 1
+   ↓
+Display chart
+31. What Member 4 needs from Member 2
+
+Member 2 helps expose Member 4's functionality through APIs.
+
+For example:
+
+Member 4
+Leave logic
+   ↓
+Member 2
+API
+   ↓
+Member 1
+Leave UI

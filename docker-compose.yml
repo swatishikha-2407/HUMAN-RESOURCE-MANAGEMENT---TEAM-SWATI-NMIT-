@@ -1,5 +1,10 @@
 services:
   mysql:
+    image: mysql:8.4
+    container_name: leave-management-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: leave_management
     image: mysql:8.0
     container_name: employee-attendance-mysql
     restart: unless-stopped
@@ -12,6 +17,9 @@ services:
       - mysql_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
       interval: 10s
       timeout: 5s
       retries: 10
