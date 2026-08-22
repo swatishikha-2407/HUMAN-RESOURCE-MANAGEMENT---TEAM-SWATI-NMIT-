@@ -1,0 +1,11 @@
+mvn clean javafx:run
+  mkdir -p build/classes
+javac -d build/classes \
+  --module-path /path/to/javafx-sdk/lib \
+  --add-modules javafx.controls \
+  src/main/java/com/dayflow/DayflowApp.java
+
+java -cp build/classes \
+  --module-path /path/to/javafx-sdk/lib \
+  --add-modules javafx.controls \
+  com.dayflow.DayflowApp
